@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Clínica Veterinaria</title>
+    <!-- Aquí conectaremos tu archivo de estilos -->
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Control de Pacientes Veterinarios</h1>
+    </header>
+
+    <main class="contenedor-principal">
+        
+        <!-- SECCIÓN 1: Formulario para registrar nuevas mascotas -->
+        <section class="seccion-registro">
+            <h2>Registrar Ingreso</h2>
+            
+            <!-- Usamos IDs en el form y los inputs para capturarlos fácil con JavaScript -->
+            <form id="formulario-registro">
+                <div class="campo">
+                    <label for="nombre-mascota">Nombre de la Mascota:</label>
+                    <input type="text" id="nombre-mascota" required>
+                </div>
+
+                <div class="campo">
+                    <label for="nombre-dueño">Nombre del Dueño:</label>
+                    <input type="text" id="nombre-dueño" required>
+                </div>
+
+                <div class="campo">
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" required>
+                </div>
+
+                <div class="campo">
+                    <label for="telefono">Teléfono de Contacto:</label>
+                    <input type="tel" id="telefono" required>
+                </div>    
+
+                <!-- Primer Filtro: Tipo de Mascota. Se da la lista de opciones, para que el usuario seleccione -->
+            <div class="form-group">
+                <label for="tipoMascota">Tipo de Mascota:</label>
+                <select id="tipoMascota" required>
+                    <option value="" disabled selected>Selecciona tipo...</option>
+                    <option value="perro">Perro</option>
+                    <option value="gato">Gato</option>
+                    <option value="exotico">Exótico / Pequeño Mamífero</option>
+                    <option value="ave">Ave</option>
+                </select>
+            </div>
+
+            <!-- Segundo Filtro: Especie o Raza Dinámica. por si el usuario quiere registrar una raza no listada -->
+            <div class="form-group">
+                <label for="subTipo">Especie / Raza:</label>
+                <select id="subTipo" disabled required>
+                    <option value="" disabled selected>Primero selecciona tipo...</option>
+                </select>
+
+                <!-- Campo de texto para raza personalizada, visible solo cuando se selecciona "Otro" -->
+                <input type="text" id="razaPersonalizada" placeholder="Escribe la raza si no está en la lista" style="display: none;">
+            </div>
+
+                
+                <!-- Creamos el botón de envío del formulario. Cuando el usuario haga click, se ejecutará la función "agregarPaciente" que está en script.js -->
+                <button type="submit">Añadir Paciente</button>
+            </form>
+
+
+    </main>
+
+    <!-- Aquí conectaremos la lógica de tu aplicación -->
+    <script src="script.js"></script>
+</body>
+</html>
