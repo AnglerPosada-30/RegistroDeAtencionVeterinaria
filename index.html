@@ -4,18 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Clínica Veterinaria</title>
-    <!-- Aquí conectaremos tu archivo de estilos -->
+
+    
+    <!-- Conexión con el archivo de estilos -->
     <link rel="stylesheet" href="styles.css">
     
 </head>
 <body>
     <header>
-        <h1>Control de Pacientes Veterinarios</h1>
+
+        Creamos un contenedor para el logo y el título de la aplicación. Dentro de este contenedor, incluimos una imagen que representa el logo de la veterinaria y un encabezado h1 que indica el propósito de la aplicación, que es el control de pacientes veterinarios. La clase "contenedor-logo" permite aplicar estilos específicos a este bloque, asegurando que el logo y el título se presenten de manera coherente y atractiva en la interfaz de usuario.
+        <div class="contenedor-logo">
+            <!-- Llamamos al archivo svg contenido en img/logo.svg -->
+            <img src="img/logo.svg" alt="Logo Veterinaria" class="icono-logo">
+            
+            Creamos un encabezado h1 que sirve como título principal de la aplicación. Este título, "Control de Pacientes Veterinarios", comunica claramente la función del sistema y ayuda a los usuarios a identificar rápidamente el propósito de la página. La colocación dentro del contenedor del logo asegura que el título esté visualmente asociado con la identidad de la clínica veterinaria.
+            <h1>Control de Pacientes Veterinarios</h1>
+        </div>
     </header>
+    
 
     <main class="contenedor-principal">
         
-        <!-- SECCIÓN 1: Formulario para registrar nuevas mascotas -->
+        <!-- En esta sección se encuentra el formulario para registrar nuevas mascotas -->
         <section class="seccion-registro">
             <h2>Registrar Ingreso</h2>
             
@@ -83,8 +94,8 @@
                 <button id="btn-atendidos">Ya Atendidos</button>
             </nav>
 
-            // divisiones para buscar y ordenar la lista de las mascotas.
-            // la opción de buscar por nombre es un input de texto, y la opción de ordenar es un botón que al hacer click ordenará la lista alfabéticamente, se puede ordenar de A-Z o de Z-A, dependiendo del estado actual de la lista.
+            <!-- divisiones para buscar y ordenar la lista de las mascotas. -->
+            <!-- la opción de buscar por nombre es un input de texto, y la opción de ordenar es un botón que al hacer click ordenará la lista alfabéticamente, se puede ordenar de A-Z o de Z-A, dependiendo del estado actual de la lista. -->
             <div class="herramientas-busqueda" style="margin: 15px 0;">
                 <input type="text" id="buscador-nombre" placeholder="🔍 Buscar por nombre...">
                 <button id="btn-ordenar">Ordenar A-Z</button>
