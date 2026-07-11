@@ -38,3 +38,45 @@ El núcleo de la página está dividido en dos grandes áreas operativas:
 ### 4. Conexión de la Lógica (`<script>`)
 * Al final del cuerpo del documento se enlaza el archivo `script.js`.
 * Esta ubicación estratégica garantiza que toda la lógica de registro, filtros, ordenamiento y control de estados se ejecute únicamente cuando el árbol HTML ya ha sido completamente renderizado por el navegador.
+
+
+## Lógica de la Aplicación (Archivo `script.js`)
+
+En esta sección se explica el "cerebro" de la página web. El objetivo principal de este archivo es darle vida a la interfaz, asegurando que los datos no se pierdan, validando la información y haciendo que sea fácil interactuar con el sistema.
+
+### 1. Memoria y Estado del Sistema
+Para evitar que la información se borre al recargar la página, el sistema utiliza la memoria del navegador (`localStorage`). 
+* **El Inventario:** Todas las mascotas se guardan en una lista principal. Si es la primera vez que se abre la página, esta lista arranca vacía para recibir ingresos. Si ya existen datos, los recupera automáticamente.
+* **Modo Edición:** Se implementó un "interruptor" interno que le avisa al formulario si estamos registrando a un paciente nuevo, o si estamos corrigiendo los datos de uno que ya existe.
+
+### 2. Conexión con la Interfaz
+Lo primero que hace el código es "capturar" todas las partes interactivas de la página (los botones, las cajas de texto, los menús). De esta forma, cuando el usuario hace clic o escribe algo, el sistema sabe exactamente de dónde sacar la información o qué acción tomar.
+
+### 3. Formularios Inteligentes
+Para facilitar el registro, los menús cambian según lo que elija el usuario. Por ejemplo, si seleccionas "Perro", el siguiente menú solo te mostrará razas de perros. Además, si la mascota no encaja en las opciones predeterminadas, al elegir "Otro", el sistema despliega automáticamente una caja de texto nueva para escribir la especie o raza a mano.
+
+### 4. Avisos de Error Amigables
+En lugar de usar ventanas emergentes molestas que bloquean la pantalla cuando el usuario se equivoca (por ejemplo, poniendo una edad irreal), se creó una función que muestra un pequeño cuadro de advertencia en el formulario. Este mensaje desaparece solo después de unos segundos, manteniendo la pantalla limpia.
+
+### 5. Creación de las Tarjetas de Pacientes
+Existe una función maestra encargada de "dibujar" a los pacientes en la pantalla. Esta función toma la lista de mascotas y crea una tarjeta visual para cada una, mostrando su nombre, dueño, edad, teléfono y un indicador que señala si su estado es "Pendiente" o "Atendido". También le agrega a cada tarjeta los botones individuales para interactuar con ella.
+
+### 6. Guardar, Editar y Eliminar
+* **Guardar:** Cada vez que hacemos un cambio (agregar a alguien, editarlo o atenderlo), el sistema actualiza la memoria del navegador y redibuja la pantalla al instante para mostrar la información más reciente.
+* **Eliminar:** Si queremos borrar un registro, el sistema primero lanza una alerta de confirmación para evitar accidentes.
+* **Editar:** Al presionar el botón de editar, el sistema toma los datos de la tarjeta seleccionada y los vuelve a cargar en el formulario principal para que podamos corregirlos fácilmente.
+
+### 7. Validaciones de Seguridad
+Antes de dejar que un paciente sea registrado, el código revisa que los datos tengan sentido lógico. Por ejemplo, obliga a que los nombres tengan más de dos letras y comprueba que la edad sea un número real, entre 0 y 30 años. Si algo no cuadra, frena el proceso y lanza el aviso de error.
+
+### 8. Buscador, Filtros y Orden
+Para que sea fácil manejar una gran cantidad de pacientes, se agregaron herramientas de organización:
+* **Buscador:** Una barra de texto que filtra las tarjetas en tiempo real a medida que escribes el nombre de la mascota.
+* **Orden Alfabético:** Un botón que organiza toda la lista de la A a la Z. Si el usuario lo vuelve a presionar, la lista se invierte de la Z a la A.
+* **Filtros rápidos:** Botones para limpiar la pantalla y ver únicamente a los pacientes "Pendientes", solo a los "Atendidos", o volver a verlos a "Todos".
+
+
+
+
+
+
