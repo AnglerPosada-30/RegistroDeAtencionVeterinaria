@@ -46,10 +46,13 @@ El núcleo de la página está dividido en dos grandes áreas operativas:
 * Botón de ordenamiento para organizar el inventario de manera alfabética (A-Z o Z-A).
 * Contenedor base (`#contenedor-lista`) reservado para que el DOM inyecte las tarjetas con la información y los botones de acción correspondientes a cada paciente.
 
+
 ### 4. Conexión de la Lógica (`<script>`)
 * Al final del cuerpo del documento se enlaza el archivo `script.js`.
 * Esta ubicación estratégica garantiza que toda la lógica de registro, filtros, ordenamiento y control de estados se ejecute únicamente cuando el árbol HTML ya ha sido completamente renderizado por el navegador.
 
+
+---
 
 ## Lógica de la Aplicación (Archivo `script.js`)
 
@@ -69,23 +72,31 @@ Para facilitar el registro, los menús cambian según lo que elija el usuario. P
 ### 4. Avisos de Error Amigables
 En lugar de usar ventanas emergentes molestas que bloquean la pantalla cuando el usuario se equivoca (por ejemplo, poniendo una edad irreal), se creó una función que muestra un pequeño cuadro de advertencia en el formulario. Este mensaje desaparece solo después de unos segundos, manteniendo la pantalla limpia.
 
-### 5. Creación de las Tarjetas de Pacientes
-Existe una función maestra encargada de "dibujar" a los pacientes en la pantalla. Esta función toma la lista de mascotas y crea una tarjeta visual para cada una, mostrando su nombre, dueño, edad, teléfono y un indicador que señala si su estado es "Pendiente" o "Atendido". También le agrega a cada tarjeta los botones individuales para interactuar con ella.
+### 5. Renderizado y Funciones Principales
+El sistema fue estructurado siguiendo una arquitectura modular basada en las funciones requeridas por la rúbrica:
+* **`registrarMascota()`:** Encargada de crear el objeto JSON con los datos ingresados y sumarlo al inventario, o de actualizar un registro existente si estamos en modo edición.
+* **`validarFormulario()`:** Función independiente que centraliza las reglas de seguridad (campos no vacíos, nombres largos y edades lógicas).
+* **`mostrarMascotas()`:** Es la función "maestra" que lee el inventario y crea dinámicamente las tarjetas (cards) en el HTML usando `createElement()`.
+* **`cambiarEstado()`:** Alterna el estado del paciente entre "Pendiente" y "Atendido".
 
-### 6. Guardar, Editar y Eliminar
+### 6. Estadísticas en Tiempo Real (`actualizarEstadisticas()`)
+Se implementó un panel de control (Dashboard) que muestra el conteo numérico permanente de los pacientes. Cada vez que se registra, elimina o atiende a una mascota, esta función utiliza el método `.filter()` para recalcular cuántos pacientes hay en total, cuántos están pendientes y cuántos fueron atendidos, inyectando el número actualizado directamente en el panel superior.
+
+### 7. Guardar, Editar y Eliminar
 * **Guardar:** Cada vez que hacemos un cambio (agregar a alguien, editarlo o atenderlo), el sistema actualiza la memoria del navegador y redibuja la pantalla al instante para mostrar la información más reciente.
 * **Eliminar:** Si queremos borrar un registro, el sistema primero lanza una alerta de confirmación para evitar accidentes.
 * **Editar:** Al presionar el botón de editar, el sistema toma los datos de la tarjeta seleccionada y los vuelve a cargar en el formulario principal para que podamos corregirlos fácilmente.
 
-### 7. Validaciones de Seguridad
+### 8. Validaciones de Seguridad
 Antes de dejar que un paciente sea registrado, el código revisa que los datos tengan sentido lógico. Por ejemplo, obliga a que los nombres tengan más de dos letras y comprueba que la edad sea un número real, entre 0 y 30 años. Si algo no cuadra, frena el proceso y lanza el aviso de error.
 
-### 8. Buscador, Filtros y Orden
+### 9. Buscador, Filtros y Orden
 Para que sea fácil manejar una gran cantidad de pacientes, se agregaron herramientas de organización:
 * **Buscador:** Una barra de texto que filtra las tarjetas en tiempo real a medida que escribes el nombre de la mascota.
 * **Orden Alfabético:** Un botón que organiza toda la lista de la A a la Z. Si el usuario lo vuelve a presionar, la lista se invierte de la Z a la A.
 * **Filtros rápidos:** Botones para limpiar la pantalla y ver únicamente a los pacientes "Pendientes", solo a los "Atendidos", o volver a verlos a "Todos".
 
+---
 
 ## Diseño y Estilos (Archivo `styles.css`)
 
@@ -114,7 +125,10 @@ Para que el usuario pueda saber el estado de un paciente con un solo vistazo, se
 ### 6. Diseño Responsivo (Adaptación a Celulares)
 Finalmente, el sistema no está pensado solo para computadoras de escritorio. Mediante el uso de *Media Queries* (`@media`), se le dio la instrucción al CSS de que, si la pantalla del dispositivo es menor a 800 píxeles de ancho (como un teléfono celular o una tablet pequeña), rompa la cuadrícula de dos columnas y coloque el formulario en la parte superior y la lista de pacientes debajo, garantizando que el sistema sea 100% usable desde cualquier dispositivo.
 
+### 7. Panel de Estadísticas (Dashboard)
+Para cumplir con el requerimiento de estadísticas permanentes, se diseñó un panel superior utilizando **Flexbox** (`justify-content: space-between`). Esto permite que los tres contadores numéricos se distribuyan uniformemente en la pantalla. Se utilizaron colores semánticos (verde para atendidos, amarillo/naranja para pendientes) para que el usuario comprenda el estado general de la clínica con un solo vistazo. Además, cuenta con su propia regla *Media Query* para apilarse verticalmente en pantallas de teléfonos celulares.
 
+---
 
 ## Uso de Inteligencia Artificial como Apoyo al Desarrollo
 
@@ -142,6 +156,9 @@ No utilicé el código generado de forma íntegra ni en su primera versión. El 
 *   **Expansión de la lógica (CRUD y Filtros):** Partimos de un formulario de registro básico, sobre el cual solicité construir un sistema completo. Cuando la IA estructuró la función para ordenar la lista de la A a la Z, me di cuenta de que la usabilidad estaba incompleta, por lo que exigí modificar la lógica para incluir un interruptor (una variable booleana) que permitiera alternar el ordenamiento de Z a A dinámicamente.
 *   **Decisiones de Arquitectura (Self-hosting y Modularidad):** No acepté las primeras propuestas de integración de recursos. Cuando la IA sugirió usar la tipografía "Poppins" mediante un enlace CDN de Google Fonts, decidí cambiarla por "Concert One" y aplicar la técnica de *self-hosting* (descargar el archivo `.ttf` y usar `@font-face`), garantizando la carga de la fuente sin depender de internet. 
 *   **Limpieza de Código:** De igual forma, cuando generamos el logotipo vectorial, la IA entregó el código `<svg>` para incrustarlo directamente en el HTML. Tomé la decisión arquitectónica de no utilizarlo así para no ensuciar el documento principal, extrayendo el código matemático hacia un archivo externo independiente (`logo.svg`) y llamándolo mediante una etiqueta de imagen, aplicando así el principio de separación de responsabilidades.
+
+
+*   **Refactorización y Cumplimiento Estricto:** En la etapa final de revisión, detecté que el código funcional no utilizaba los nombres exactos exigidos en la rúbrica. Utilicé la IA como herramienta de refactorización rápida para reestructurar la lógica de mi `script.js`, aislando la lógica en las funciones obligatorias (`registrarMascota`, `validarFormulario`, `mostrarMascotas`, `cambiarEstado` y `actualizarEstadisticas`) y para generar el contenedor visual del panel de estadísticas permanentes, asegurando el cumplimiento al 100% del requerimiento.
 
 
 **5. ¿Por qué considera importante revisar las respuestas generadas por la IA antes de utilizarlas?**

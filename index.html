@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Clínica Veterinaria</title>
 
-    
     <!-- Conexión con el archivo de estilos -->
     <link rel="stylesheet" href="styles.css">
     
 </head>
 <body>
     <header>
-
         <!-- Creamos un contenedor para el logo y el título de la aplicación. Dentro de este contenedor, incluimos una imagen que representa el logo de la veterinaria y un encabezado h1 que indica el propósito de la aplicación, que es el control de pacientes veterinarios. La clase "contenedor-logo" permite aplicar estilos específicos a este bloque, asegurando que el logo y el título se presenten de manera coherente y atractiva en la interfaz de usuario. -->
         <div class="contenedor-logo">
             <!-- Llamamos al archivo svg contenido en img/logo.svg -->
@@ -23,7 +21,6 @@
         </div>
     </header>
     
-
     <main class="contenedor-principal">
         
         <!-- En esta sección se encuentra el formulario para registrar nuevas mascotas -->
@@ -53,41 +50,60 @@
                 </div>    
 
                 <!-- Primer Filtro: Tipo de Mascota. Se da la lista de opciones, para que el usuario seleccione -->
-            <div class="form-group">
-                <label for="tipoMascota">Tipo de Mascota:</label>
-                <select id="tipoMascota" required>
-                    <option value="" disabled selected>Selecciona tipo...</option>
-                    <option value="perro">Perro</option>
-                    <option value="gato">Gato</option>
-                    <option value="exotico">Exótico / Pequeño Mamífero</option>
-                    <option value="ave">Ave</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="tipoMascota">Tipo de Mascota:</label>
+                    <select id="tipoMascota" required>
+                        <option value="" disabled selected>Selecciona tipo...</option>
+                        <option value="perro">Perro</option>
+                        <option value="gato">Gato</option>
+                        <option value="exotico">Exótico / Pequeño Mamífero</option>
+                        <option value="ave">Ave</option>
+                    </select>
+                </div>
 
-            <!-- Segundo Filtro: Especie o Raza Dinámica. por si el usuario quiere registrar una raza no listada -->
-            <div class="form-group">
-                <label for="subTipo">Especie / Raza:</label>
-                <select id="subTipo" disabled required>
-                    <option value="" disabled selected>Primero selecciona tipo...</option>
-                </select>
+                <!-- Segundo Filtro: Especie o Raza Dinámica. por si el usuario quiere registrar una raza no listada -->
+                <div class="form-group">
+                    <label for="subTipo">Especie / Raza:</label>
+                    <select id="subTipo" disabled required>
+                        <option value="" disabled selected>Primero selecciona tipo...</option>
+                    </select>
 
-                <!-- Campo de texto para raza personalizada, visible solo cuando se selecciona "Otro" -->
-                <input type="text" id="razaPersonalizada" placeholder="Escribe la raza si no está en la lista" style="display: none;">
-            </div>
+                    <!-- Campo de texto para raza personalizada, visible solo cuando se selecciona "Otro" -->
+                    <input type="text" id="razaPersonalizada" placeholder="Escribe la raza si no está en la lista" style="display: none;">
+                </div>
 
-                
                 <!-- Creamos el botón de envío del formulario. Cuando el usuario haga click, se ejecutará la función "agregarPaciente" que está en script.js -->
                 <button type="submit">Añadir Paciente</button>
             </form>
-
-                    </section>
+        </section>
 
         <!-- Sección: Panel de control para ver y filtrar estados -->
         <section class="seccion-pacientes">
             <h2>Lista de Pacientes</h2>
+
+            <!-- En esta sección creamos un panel permanente de estadísticas. Este contenedor agrupará el conteo total de mascotas, las que están pendientes y las ya atendidas. Le ponemos la clase "panel-estadisticas" para darle un diseño ordenado y separado del resto. -->
+            <div class="panel-estadisticas">
+                
+                <!-- Aquí mostramos el total de mascotas registradas en el sistema. Usamos el ID "stat-total" para que nuestro código JavaScript pueda buscar este span y actualizar el número automáticamente cada vez que agreguemos o eliminemos un paciente. -->
+                <div class="stat-item">
+                    <h3>Total Mascotas</h3>
+                    <span id="stat-total">0</span>
+                </div>
+                
+                <!-- En esta caja mostramos cuántas mascotas siguen en espera. Le agregamos la clase "pendientes" para poder pintarla de color naranja/amarillo en el CSS. También usamos el ID "stat-pendientes" para que el JavaScript inyecte aquí el conteo de los que tienen el estado 'atendido' en false. -->
+                <div class="stat-item pendientes">
+                    <h3>Pendientes</h3>
+                    <span id="stat-pendientes">0</span>
+                </div>
+                
+                <!-- Finalmente, esta caja es para las mascotas que ya fueron atendidas. Usamos la clase "atendidos" para darle un color verde de éxito en nuestro CSS, y el ID "stat-atendidos" para llevar el conteo correcto de los pacientes listos desde nuestro archivo script.js. -->
+                <div class="stat-item atendidos">
+                    <h3>Atendidas</h3>
+                    <span id="stat-atendidos">0</span>
+                </div>
+            </div>
             
             <!-- Botones para filtrar lo que quieres ver en pantalla -->
-             
             <nav class="filtros">
                 <button id="btn-todos">Todos</button>
                 <button id="btn-pendientes">Pendientes</button>
@@ -105,12 +121,11 @@
                  va a "dibujar" a cada mascota una vez que se registre -->
             <div id="contenedor-lista" class="lista-mascotas">
                 <!-- 
-                  El archivo JavaScriptcreará aquí dentro unas tarjetas (cards) 
+                  El archivo JavaScript creará aquí dentro unas tarjetas (cards) 
                   con los datos y un botón de "Marcar como atendido" para cada mascota.
                 -->
             </div>
         </section>
-
 
     </main>
 

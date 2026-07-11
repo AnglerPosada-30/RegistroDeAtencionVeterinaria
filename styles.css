@@ -297,3 +297,49 @@ button[type="submit"]:hover {
         grid-template-columns: 1fr; /* Pone el formulario arriba y tarjetas abajo */
     }
 }
+
+
+/* ESTADÍSTICAS PERMANENTES DE MASCOTAS  */
+
+/* Contenedor principal del panel. Usamos flexbox (display: flex) para alinear las tres cajas de números una al lado de la otra, repartiendo el espacio uniformemente (justify-content: space-between). Le damos un fondo blanco, bordes redondeados y la misma sombra sutil del formulario para mantener la coherencia visual con el resto de la página. */
+.panel-estadisticas {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilos para el texto descriptivo ("Total Mascotas", "Pendientes", etc.). Le quitamos los márgenes por defecto y le damos un color gris suave para que no compita visualmente con el número. */
+.stat-item h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+/* Estilos para los números dinámicos. Los hacemos grandes, en negrita y usando el color azul principal definido en tus variables, para que destaquen. */
+.stat-item span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+/* Modificadores de color específicos según el estado. Si la caja tiene la clase 'pendientes', el número se vuelve naranja/amarillo. Si tiene la clase 'atendidos', el número se vuelve verde. */
+.stat-item.pendientes span { 
+    color: #f39c12; 
+}
+
+.stat-item.atendidos span { 
+    color: #2ecc71; 
+}
+
+/* Diseño responsivo para celulares: Si la pantalla es menor a 800px de ancho, cambiamos la dirección del flexbox a 'column' para que las tres estadísticas se apilen verticalmente hacia abajo, evitando que se aplasten en pantallas pequeñas. */
+@media (max-width: 800px) {
+    .panel-estadisticas {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
