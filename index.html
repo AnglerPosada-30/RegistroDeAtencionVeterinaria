@@ -69,10 +69,41 @@
                 <button type="submit">Añadir Paciente</button>
             </form>
 
+                    </section>
+
+        <!-- Sección: Panel de control para ver y filtrar estados -->
+        <section class="seccion-pacientes">
+            <h2>Lista de Pacientes</h2>
+            
+            <!-- Botones para filtrar lo que quieres ver en pantalla -->
+             
+            <nav class="filtros">
+                <button id="btn-todos">Todos</button>
+                <button id="btn-pendientes">Pendientes</button>
+                <button id="btn-atendidos">Ya Atendidos</button>
+            </nav>
+
+            // divisiones para buscar y ordenar la lista de las mascotas.
+            // la opción de buscar por nombre es un input de texto, y la opción de ordenar es un botón que al hacer click ordenará la lista alfabéticamente, se puede ordenar de A-Z o de Z-A, dependiendo del estado actual de la lista.
+            <div class="herramientas-busqueda" style="margin: 15px 0;">
+                <input type="text" id="buscador-nombre" placeholder="🔍 Buscar por nombre...">
+                <button id="btn-ordenar">Ordenar A-Z</button>
+            </div>
+
+            <!-- Esta div es un contenedor vacío. Aquí es donde el código JavaScript 
+                 va a "dibujar" a cada mascota una vez que se registre -->
+            <div id="contenedor-lista" class="lista-mascotas">
+                <!-- 
+                  El archivo JavaScriptcreará aquí dentro unas tarjetas (cards) 
+                  con los datos y un botón de "Marcar como atendido" para cada mascota.
+                -->
+            </div>
+        </section>
+
 
     </main>
 
-    <!-- Aquí conectaremos la lógica de tu aplicación -->
+    <!-- Realizamos la conexión con el archivo JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
