@@ -2,6 +2,17 @@
 
 En el presente trabajo se detalla el proceso de desarrollo de la aplicación web, con el objetivo de evidenciar un entendimiento sólido sobre la integración y el funcionamiento conjunto de HTML, CSS y JavaScript. Es importante destacar que el uso de inteligencia artificial se limitó a la resolución de dudas puntuales y como apoyo conceptual, asegurando que el código fuente no fue simplemente replicado, sino analizado, comprendido y estructurado bajo autoría propia.
 
+
+## Enlaces del Proyecto
+
+A continuación, puedes acceder al código fuente y a la versión funcional del sistema:
+
+*  **Repositorio en GitHub:** [Registro de Atención Veterinaria](https://github.com/AnglerPosada-30/RegistroDeAtencionVeterinaria.git)
+*  **Sitio Web Desplegado (Vercel):** [Ver aplicación en vivo](https://registro-de-atencion-veterinaria.vercel.app/)
+
+
+---
+
 A continuación, se detalla el paso a paso seguido para la creación del sitio web:
 
 ## Estructura del Archivo `index.html`
