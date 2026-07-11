@@ -1,0 +1,299 @@
+/* FUENTE LOCAL PARA EL TÍTULO DEL HEADER  */
+@font-face {
+    font-family: 'Concert One';
+    /* Se indica la ruta al archivo de fuente contenido en la carpeta 'fonts' */
+    src: url('fonts/Caveat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* VARIABLES DE COLOR Y FUENTES.*/
+/* Se utilizan para mantener consistencia en el diseño */
+:root {
+    --color-primario: #2c3e50;
+    --color-secundario: #3498db;
+    --color-acento: #e74c3c;
+    --color-fondo: #f5f6fa;
+    --color-texto: #333;
+    --color-tarjeta: #ffffff;
+    --borde-radio: 8px;
+    --sombra: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* * para aplicar un reset básico a todos los elementos, eliminando márgenes y paddings por defecto, y estableciendo un box-sizing uniforme para facilitar el diseño. También se define una fuente base para todo el documento. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* En el body, se define el color del texto, la altura de línea y se configura un fondo que combina una imagen con un degradado semitransparente para mejorar la legibilidad del contenido sobre la imagen. La imagen de fondo se ajusta para cubrir toda la pantalla, se centra y permanece fija al hacer scroll. */
+body {
+    color: var(--color-texto);
+    line-height: 1.6;
+    
+    /*Configuración del fondo */
+    /* El linear-gradient crea una capa blanca al 10% de opacidad sobre la imagen de fondo */
+    background-image: linear-gradient(rgba(245, 246, 250, 0.10), rgba(245, 246, 250, 0.10)), url('img/fondoApp.jpg');
+    
+    /* Aseguramos que la imagen cubra toda la pantalla sin deformarse */
+    background-size: cover;
+    
+    /* Centramos la imagen */
+    background-position: center;
+    
+    /* Hacemos que el fondo se quede quieto aunque el usuario haga scroll hacia abajo */
+    background-attachment: fixed;
+}
+
+/* CABECERA Y LOGO. */
+
+/* Se define un estilo para el header, estableciendo un color de fondo primario, texto blanco, padding y una sombra para darle profundidad. Dentro del header, se utiliza un contenedor flex para alinear el logo y el título de manera centrada tanto vertical como horizontalmente, con un espacio definido entre ellos. El ícono del logo se hace más grande y el título utiliza una fuente cursiva personalizada con un peso de letra grueso y un espaciado entre letras para mayor elegancia. */
+header {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+}
+
+.contenedor-logo {
+    display: flex; /* Alinea los elementos en fila */
+    align-items: center; /* Los centra verticalmente */
+    justify-content: center; /* Los centra horizontalmente en la pantalla */
+    gap: 15px; /* Crea un espacio entre el logo y las letras */
+}
+
+.icono-logo {
+    font-size: 3rem; /* Hace el ícono más grande */
+    /* Si decides usar una imagen <img> en el futuro, puedes agregarle width: 60px; aquí */
+}
+
+header h1 {
+    font-family: 'Caveat', cursive; /* Aplicamos la nueva fuente */
+    font-weight: 700; /* Hacemos que la letra sea bien gruesa */
+    margin: 0; /* Quitamos márgenes por defecto para que no se desalinee */
+    letter-spacing: 1px; /* Separamos un poquito las letras para mayor elegancia */
+}
+
+
+/* CONTENEDOR PRINCIPAL Y GRID.  */
+/* Creamos un contenedor principal con una anchura máxima y un margen centrado */
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    /* División de pantalla:  Formulario a la izquierda, Tarjetas a la derecha */
+    grid-template-columns: 350px 1fr; 
+    gap: 30px;
+}
+
+
+/* SECCIÓN DE REGISTRO DE MASCOTAS. */
+/* Primeramente, definimos un estilo para la sección de registro, estableciendo un color de fondo para las tarjetas, padding y sombras para darle profundidad. */
+.seccion-registro {
+    background-color: var(--color-tarjeta);
+    padding: 25px;
+    border-radius: var(--borde-radio);
+    box-shadow: var(--sombra);
+    height: fit-content;
+}
+
+/* Luego, definimos un estilo para el título de la sección de registro */
+.seccion-registro h2 {
+    margin-bottom: 20px;
+    color: var(--color-primario);
+    border-bottom: 2px solid var(--color-secundario);
+    padding-bottom: 10px;
+}
+
+/* Para los campos del formulario, se establece un margen inferior para separar cada campo y se define un estilo para las etiquetas, entradas y selectores, asegurando que ocupen todo el ancho disponible, tengan un padding adecuado y bordes redondeados. Además, se agregan transiciones para mejorar la experiencia del usuario al interactuar con los campos. Los botones de envío tienen un estilo destacado con colores de fondo, texto blanco y efectos de hover para indicar interactividad. */
+.campo, .form-group {
+    margin-bottom: 15px;
+}
+
+/* con label hacemos que se muestre como bloque, con un peso de letra más grueso, un margen inferior para separar del campo de entrada y un tamaño de fuente ligeramente más pequeño para mantener la jerarquía visual. */
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+/* con las etiquetas el input y select se asegura que ocupen todo el ancho disponible, tengan un padding adecuado para facilitar la escritura, bordes redondeados para un diseño más amigable y una transición suave en el color del borde al enfocarse, mejorando la experiencia del usuario. */
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+/* Esta sección nos permite eliminar el contorno predeterminado del navegador y cambiar el color del borde al color secundario definido en las variables, proporcionando un feedback visual claro al usuario cuando interactúa con los campos del formulario. */
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--color-secundario);
+}
+
+/* Después en el Botón de envío, se define un estilo destacado con un ancho completo, padding adecuado, color de fondo secundario, texto blanco, sin bordes y con bordes redondeados. Además, se agrega un efecto de transición para cambiar el color de fondo al pasar el cursor sobre el botón, indicando interactividad y mejorando la experiencia del usuario. */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+/* Al pasar el cursor sobre el botón de envío, se cambia el color de fondo a un tono más oscuro del color secundario, proporcionando un feedback visual al usuario y mejorando la experiencia de interacción. */
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* LISTA DE PACIENTES Y FILTROS */
+/* En esta sección, se define un estilo para la lista de pacientes, estableciendo un color de fondo para las tarjetas, padding y sombras para darle profundidad. Además, se agregan estilos para los títulos y los contenedores de filtros y herramientas de búsqueda, asegurando que se muestren de manera flexible y con un espacio adecuado entre ellos. Los botones dentro de estos contenedores tienen un estilo consistente con el resto de la aplicación, incluyendo efectos de hover para indicar interactividad. Los campos de entrada dentro de las herramientas de búsqueda se expanden para ocupar el espacio disponible, mejorando la usabilidad. */
+.seccion-pacientes h2 {
+    color: var(--color-primario);
+    margin-bottom: 20px;
+}
+
+.filtros, .herramientas-busqueda {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filtros button, .herramientas-busqueda button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.filtros button:hover, .herramientas-busqueda button:hover {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.herramientas-busqueda input {
+    flex-grow: 1;
+    border-radius: 20px;
+}
+
+/* TARJETA DE PACIENTE */
+/* En esta sección, se define un estilo para la lista de mascotas utilizando un grid que se adapta automáticamente al tamaño de la pantalla, creando columnas automáticas con un ancho mínimo de 300px y un espacio entre ellas. Cada tarjeta de paciente tiene un color de fondo definido, padding, bordes redondeados y una sombra para darle profundidad. Además, se agrega un borde izquierdo de color secundario para resaltar cada tarjeta y una transición suave al pasar el cursor sobre ella, elevándola ligeramente para indicar interactividad. Los títulos y párrafos dentro de las tarjetas tienen márgenes y tamaños de fuente definidos para mantener una jerarquía visual clara. */
+.lista-mascotas {
+    display: grid;
+    /* Crea columnas automáticas dependiendo del tamaño de la pantalla */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-paciente {
+    background-color: var(--color-tarjeta);
+    padding: 20px;
+    border-radius: var(--borde-radio);
+    box-shadow: var(--sombra);
+    position: relative;
+    border-left: 5px solid var(--color-secundario);
+    transition: transform 0.2s;
+}
+
+.tarjeta-paciente:hover {
+    transform: translateY(-5px);
+}
+
+.tarjeta-paciente h3 {
+    margin-bottom: 10px;
+    color: var(--color-primario);
+}
+
+.tarjeta-paciente p {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+/* ETIQUETAS DE ESTADO Y BOTONES DE ACCIÓN */
+/* Esta sección define estilos para las etiquetas de estado de cada mascota, mostrando un fondo y color de texto diferente según si la mascota está pendiente o atendida. Además, se establece un contenedor flexible para los botones de acción, asegurando que se distribuyan uniformemente y tengan un estilo consistente con el resto de la aplicación, incluyendo efectos de hover para indicar interactividad. */
+.estado-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.estado-badge.pendiente {
+    background-color: #f39c12;
+    color: white;
+}
+
+.estado-badge.atendido {
+    background-color: #27ae60;
+    color: white;
+}
+
+.caja-botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.caja-botones button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+}
+
+/* definición de estilos para los botones de acción */
+.caja-botones button:nth-child(1) { background-color: var(--color-secundario); } /* Cambiar Estado */
+.caja-botones button:nth-child(2) { background-color: #f1c40f; color: #333; } /* Editar */
+.caja-botones button:nth-child(3) { background-color: var(--color-acento); } /* Eliminar */
+
+.caja-botones button:hover {
+    filter: brightness(0.9);
+}
+
+/* ESTRUCTURA DEL ESTILO DEL  MENSAJES DE ERROR */
+/* Se define un estilo para los mensajes de error, estableciendo un fondo rojo, color de texto oscuro y un padding para darle espacio. Además, se agrega un borde redondeado y una animación para hacer que aparezcan suavemente. */
+.mensaje-error {
+    background-color: #ffbaba;
+    color: #d8000c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    animation: aparecer 0.3s ease-in-out;
+}
+
+/* Con @keyframes, se define la animación 'aparecer' que hace que los mensajes de error se desvanezcan y se desplacen ligeramente hacia arriba al aparecer, mejorando la experiencia visual del usuario al recibir retroalimentación sobre errores en el formulario. */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* DISEÑO RESPONSIVO */
+/* En esta última sección, se define un diseño responsivo para la aplicación, asegurando que se vea bien en dispositivos con pantallas más pequeñas. Cuando el ancho de la pantalla es de 800px o menos, el contenedor principal cambia su disposición de grid a una sola columna, colocando el formulario de registro arriba y las tarjetas de pacientes abajo. Esto mejora la legibilidad y la usabilidad en dispositivos móviles, proporcionando una experiencia de usuario más fluida y accesible. */
+@media (max-width: 800px) {
+    .contenedor-principal {
+        grid-template-columns: 1fr; /* Pone el formulario arriba y tarjetas abajo */
+    }
+}
